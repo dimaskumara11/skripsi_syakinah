@@ -1,0 +1,6 @@
+1.  cetak pdf request order
+2.  cetak pdf supplier
+3.  cetak pdf hutang supplier
+4.  cetak pdf purchase order
+5.  delete data if relate other table
+6.  privilege 
