@@ -7,6 +7,7 @@ use App\Models\PurchaseOrderModel;
 use App\Models\PurchaseProductModel;
 use App\Models\RequestOrderModel;
 use App\Models\RequestProductModel;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -165,5 +166,18 @@ class Purchase_Order extends Controller
         return redirect(route("cpanel.request_order"))
             ->with("status", $status)
             ->with("message", $message);
+    }
+    public function export_pdf(PDF $dompdf,$id=0)
+    {
+        $data_purchase          = PurchaseOrderModel::where("request_order.id_request_order",$id)
+                                            ->leftJoin("request_order","request_order.id_request_order","=","purchase_order.id_request_order")
+                                            ->first();
+        $data_purchase_product  = PurchaseProductModel::where("purchase_order.id_purchase_order",$data_purchase->id_purchase_order)
+                                            ->leftJoin("purchase_order","purchase_order.id_purchase_order","=","purchase_product.id_purchase_order")
+                                            ->leftJoin("request_product","request_product.id_request_product","=","purchase_product.id_request_product")
+                                            ->get();
+
+        $pdf = $dompdf->loadview('page.purchase_order.pdf',['purchase'=>$data_purchase,'purchase_product'=>$data_purchase_product]);
+        return $pdf->stream();
     }
 }

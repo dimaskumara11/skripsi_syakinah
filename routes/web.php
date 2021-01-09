@@ -39,6 +39,7 @@ Route::prefix('cpanel')->middleware(check_session_login::class)->group(function 
         Route::get('list', [Data_Supplier::class, 'list'])->name("cpanel.data_supplier");
         Route::get('form/{id?}', [Data_Supplier::class, 'form'])->name('cpanel.data_supplier.form');
         Route::get('delete/{id}', [Data_Supplier::class, 'delete'])->name('cpanel.data_supplier.delete');
+        Route::get('pdf/{id}', [Data_Supplier::class, 'export_pdf'])->name('cpanel.data_supplier.pdf');
         Route::post('insert', [Data_Supplier::class, 'insert'])->name('cpanel.data_supplier.insert');
         Route::post('update', [Data_Supplier::class, 'update'])->name('cpanel.data_supplier.update');
     });
@@ -46,12 +47,14 @@ Route::prefix('cpanel')->middleware(check_session_login::class)->group(function 
         Route::get('list', [Request_Order::class, 'list'])->name("cpanel.request_order");
         Route::get('form/{id?}', [Request_Order::class, 'form'])->name('cpanel.request_order.form');
         Route::get('delete/{id}', [Request_Order::class, 'delete'])->name('cpanel.request_order.delete');
+        Route::get('pdf/{id}', [Request_Order::class, 'export_pdf'])->name('cpanel.request_order.pdf');
         Route::post('insert', [Request_Order::class, 'insert'])->name('cpanel.request_order.insert');
         Route::post('update', [Request_Order::class, 'update'])->name('cpanel.request_order.update');
     });
     Route::prefix('purchase_order')->middleware(check_superadmin_divisi::class)->group(function () {
         Route::get('list', [Purchase_Order::class, 'list'])->name("cpanel.purchase_order");
         Route::get('form/{id?}', [Purchase_Order::class, 'form'])->name('cpanel.purchase_order.form');
+        Route::get('pdf/{id}', [Purchase_Order::class, 'export_pdf'])->name('cpanel.purchase_order.pdf');
         Route::get('delete/{id}', [Purchase_Order::class, 'delete'])->name('cpanel.purchase_order.delete');
         Route::post('insert', [Purchase_Order::class, 'insert'])->name('cpanel.purchase_order.insert');
         Route::post('update', [Purchase_Order::class, 'update'])->name('cpanel.purchase_order.update');
@@ -78,6 +81,7 @@ Route::prefix('cpanel')->middleware(check_session_login::class)->group(function 
         Route::get('list', [Hutang_Supplier::class, 'list'])->name("cpanel.hutang_supplier");
         Route::get('form/{id?}', [Hutang_Supplier::class, 'form'])->name('cpanel.hutang_supplier.form');
         Route::get('delete/{id}', [Hutang_Supplier::class, 'delete'])->name('cpanel.hutang_supplier.delete');
+        Route::get('pdf/{id}', [Hutang_Supplier::class, 'export_pdf'])->name('cpanel.hutang_supplier.pdf');
         Route::post('insert', [Hutang_Supplier::class, 'insert'])->name('cpanel.hutang_supplier.insert');
         Route::post('update', [Hutang_Supplier::class, 'update'])->name('cpanel.hutang_supplier.update');
     });

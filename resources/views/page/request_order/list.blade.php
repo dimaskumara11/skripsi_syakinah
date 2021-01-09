@@ -75,7 +75,7 @@
                                   <td>
                                       <a href="{{route('cpanel.request_order.form',[$value->id_request_order])}}" title="edit" class="btn btn-info btn-xs round"><span class="fa fa-edit"></span></a>
                                       <a href="#" title="detail" class="btn btn-success btn-xs round detail" id="{{$value->id_request_order}}"><span class="fa fa-eye"></span></a>
-                                      <a href="#" onclick="return alert(`sedang dalam perbaikan`)" title="print" class="btn btn-warning btn-xs round"><span class="fa fa-print"></span></a>
+                                      <a target="_blank" href="{{route('cpanel.request_order.pdf',[$value->id_request_order])}}" title="print" class="btn btn-warning btn-xs round"><span class="fa fa-print"></span></a>
                                       <a href="{{route('cpanel.request_order.delete',[$value->id_request_order])}}" onclick="return confirm(`kamu yakin ingin menghapus?`)" title="hapus" class="btn btn-danger btn-xs round"><span class="fa fa-trash"></span></a>
                                   </td>
                               </tr>
@@ -109,7 +109,7 @@
                                         <td>{{$value->tanggal_request}}</td>
                                         <td>
                                             <a href="#" title="detail" class="btn btn-success btn-xs round detail" id="{{$value->id_request_order}}"><span class="fa fa-eye"></span></a>
-                                            <a href="#" onclick="return alert(`sedang dalam perbaikan`)" title="print" class="btn btn-warning btn-xs round"><span class="fa fa-print"></span></a>
+                                            <a target="_blank" href="{{route('cpanel.request_order.pdf',[$value->id_request_order])}}" title="print" class="btn btn-warning btn-xs round"><span class="fa fa-print"></span></a>
                                             <a href="{{route('cpanel.request_order.delete',[$value->id_request_order])}}" onclick="return confirm(`kamu yakin ingin menghapus?`)" title="hapus" class="btn btn-danger btn-xs round"><span class="fa fa-trash"></span></a>
                                         </td>
                                     </tr>

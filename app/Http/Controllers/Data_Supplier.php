@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataSupplierModel;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -128,5 +129,12 @@ class Data_Supplier extends Controller
         return redirect(route("cpanel.data_supplier"))
             ->with("status", $status)
             ->with("message", $message);
+    }
+    public function export_pdf(PDF $dompdf,$id=0)
+    {
+        $data_supplier = DataSupplierModel::where("id_supplier",$id)->get();
+
+        $pdf = $dompdf->loadview('page.data_supplier.pdf',['supplier'=>$data_supplier]);
+        return $pdf->stream();
     }
 }

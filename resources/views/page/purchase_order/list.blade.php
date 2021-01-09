@@ -103,6 +103,7 @@
                                         <td>{{$value->nama}}</td>
                                         <td>{{$value->tanggal_request}}</td>
                                         <td>
+                                          <a target="_blank" href="{{route('cpanel.purchase_order.pdf',[$value->id_request_order])}}" title="print" class="btn btn-info btn-xs round"><span class="fa fa-print"></span></a>
                                           <a href="#" title="detail" class="btn btn-warning btn-xs round detail" id="{{$value->id_request_order}}"><span class="fa fa-eye"></span></a>
                                         </td>
                                     </tr>

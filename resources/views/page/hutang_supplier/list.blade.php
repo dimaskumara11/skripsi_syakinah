@@ -41,7 +41,8 @@
                                       <td>{{$value->status_pembayaran==0?"Cicil":"Lunas"}}</td>
                                       <td>
                                           <a href="{{route('cpanel.hutang_supplier.form',[$value->id_hutang_supplier])}}" title="edit" class="btn btn-info btn-xs round"><span class="fa fa-edit"></span></a>
-                                          <a href="#" onclick="return alert(`sedang dalam perbaikan`)" title="hapus" class="btn btn-warning btn-xs round"><span class="fa fa-print"></span></a>
+                                          <a target="_blank" href="{{route('cpanel.hutang
+                                          _supplier.pdf',[$value->id_hutang_supplier])}}" title="Print PDF" class="btn btn-warning btn-xs round"><span class="fa fa-print"></span></a>
                                           <a href="{{route('cpanel.hutang_supplier.delete',[$value->id_hutang_supplier])}}" onclick="return confirm(`kamu yakin ingin menghapus?`)" title="hapus" class="btn btn-danger btn-xs round"><span class="fa fa-trash"></span></a>
                                       </td>
                                   </tr>

@@ -6,6 +6,7 @@ use App\Models\DataSupplierModel;
 use App\Models\HakAksesModel;
 use App\Models\HutangSupplierModel;
 use App\Models\UserModel;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -133,5 +134,12 @@ class Hutang_Supplier extends Controller
         return redirect(route("cpanel.hutang_supplier"))
             ->with("status", $status)
             ->with("message", $message);
+    }
+    public function export_pdf(PDF $dompdf,$id=0)
+    {
+        $data_supplier = HutangSupplierModel::leftJoin("supplier","supplier.id_supplier","=","hutang_supplier.id_supplier")->where("id_hutang_supplier",$id)->get();
+
+        $pdf = $dompdf->loadview('page.hutang_supplier.pdf',['supplier'=>$data_supplier]);
+        return $pdf->stream();
     }
 }

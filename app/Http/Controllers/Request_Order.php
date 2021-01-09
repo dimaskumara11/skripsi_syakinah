@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataSupplierModel;
 use App\Models\RequestOrderModel;
 use App\Models\RequestProductModel;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -167,5 +168,16 @@ class Request_Order extends Controller
         return redirect(route("cpanel.request_order"))
             ->with("status", $status)
             ->with("message", $message);
+    }
+    public function export_pdf(PDF $dompdf,$id=0)
+    {
+        $data_request = RequestOrderModel::where("id_request_order",$id)
+                                            ->leftJoin("supplier","supplier.id_supplier","=","request_order.id_supplier")
+                                            ->first();
+        $data_request_product = RequestProductModel::where("id_request_order",$id)
+                                            ->get();
+
+        $pdf = $dompdf->loadview('page.request_order.pdf',['request'=>$data_request,'request_product'=>$data_request_product]);
+        return $pdf->stream();
     }
 }

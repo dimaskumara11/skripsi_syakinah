@@ -35,5 +35,4 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('template_admin')}}/dist/js/demo.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
 @stack('add_js')
